@@ -33,12 +33,22 @@ resource "proxmox_vm_qemu" "your-vm" {
         model  = "virtio"
     }
 
+    disk {
+        storage = "local-lvm"
+        type = "virtio"
+        size = "20G"
+    }
+
     # VM Cloud-Init Settings
     os_type = "cloud-init"
 
     # (Optional) IP Address and Gateway
-    # ipconfig0 = "ip=0.0.0.0/0,gw=0.0.0.0"
+    ipconfig0 = "ip=0.0.0.0/0,gw=0.0.0.0"
     
+    # If your packer image template already has a user and ssh key created then only use this step
+    # to create an additional user and ssh key pair
+
+
     # (Optional) Default User
     # ciuser = "your-username"
     
